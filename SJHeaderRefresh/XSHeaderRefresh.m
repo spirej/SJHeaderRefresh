@@ -10,10 +10,6 @@
 
 
 @interface XSHeaderRefresh()
-{
-    CGFloat _angle;
-    BOOL isOK;
-}
 @property(weak, nonatomic) UIView * headerFreshView;
 @property(weak, nonatomic)UILabel * label;
 @property(nonatomic, strong)UIImageView * imageView;
@@ -26,9 +22,6 @@
 - (void)prepare
 {
     [super prepare];
-    
-    _angle = 1.0;
-    isOK = YES;
     // 设置控件的高度
     self.mj_h = 75;
     
@@ -58,10 +51,10 @@
 {
     [super placeSubviews];
     
-    self.headerFreshView.bounds = CGRectMake(0, 0, 85, 20);
-    self.headerFreshView.center = CGPointMake(self.mj_w*0.5, self.mj_h-30);
+    self.headerFreshView.bounds = CGRectMake(0, 0, 110, 20);
+    self.headerFreshView.center = CGPointMake(self.mj_w*0.5, self.mj_h-20);
     
-    self.label.frame = CGRectMake(20, 0, 65, 20);
+    self.label.frame = CGRectMake(30, 0, 80, 20);
 
     self.imageView.frame = CGRectMake(10, 5, 10, 10);
 }
@@ -124,24 +117,18 @@
 
 
 #pragma mark 图片旋转
--(void)startAnimation
+- (void)startAnimation
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.05];
-    [UIView setAnimationDelegate:self];
-    if (!isOK) {
-        return;
-    }
-    [UIView setAnimationDidStopSelector:@selector(startAnimation)];
-    _angle += 15;
-    self.imageView.layer.anchorPoint = CGPointMake(0.5,0.5);//以右下角为原点转，（0,0）是左上角转，（0.5,0,5）心中间转，其它以此类推
-    self.imageView.transform = CGAffineTransformMakeRotation(_angle * (M_PI / 180.0f));
-    self.imageView.animationDuration = 1;
-    [UIView commitAnimations];
+    CABasicAnimation *basicAni= [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    basicAni.duration = 1;
+    basicAni.repeatCount = MAXFLOAT;
+    //    basicAni.repeatDuration = 3;
+    basicAni.toValue = @(M_PI * 2);
+    [self.imageView.layer addAnimation:basicAni forKey:nil];
 }
 - (void)endAnimation
 {
-    isOK = !isOK;
+    [self.imageView.layer removeAllAnimations];
 }
 
 
