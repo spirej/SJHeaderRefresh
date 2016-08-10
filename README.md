@@ -13,7 +13,8 @@
 ```
 #import "MJRefreshHeader.h"
 @interface XSHeaderRefresh : MJRefreshHeader
-@end```
+@end
+```
 
 - XSHeaderRefresh.m（下面代码全部为.m文件内容）
 1)自定义视图用到哪些UI元素在这里声明
@@ -23,8 +24,10 @@
 @property(weak, nonatomic) UIView * headerFreshView;
 @property(weak, nonatomic)UILabel * label;
 @property(nonatomic, strong)UIImageView * imageView;
-@end```
+@end
+```
 2)这里做控件的初始化配置
+```
       @implementation XSHeaderRefresh
       - (void)prepare {
           [super prepare];
@@ -45,8 +48,9 @@
           [self.headerFreshView addSubview:imageView];
           self.imageView = imageView;
       }
-
+```
   3)设置子控件的位置和尺寸
+  ```
       - (void)placeSubviews
       {
           [super placeSubviews];
@@ -55,7 +59,9 @@
           self.label.frame = CGRectMake(30, 0, 80, 20);
           self.imageView.frame = CGRectMake(10, 5, 10, 10);
       }
+      ```
 4)重写父类方法
+```
        #pragma mark 监听scrollView的contentOffset改变
       - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
       {
@@ -103,8 +109,9 @@
     
           self.label.textColor = [UIColor blackColor];
       }
-
+```
      5)图片旋转（自定义）
+     ```
       -(void)startAnimation
       {
           CABasicAnimation *basicAni= [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -118,9 +125,11 @@
       {
           [self.imageView.layer removeAllAnimations];
       }
+      ```
  
 - 调用类的示例
   1）
+```
       __unsafe_unretained UITableView *tableView = self.tableView;
           // 下拉刷新
           tableView.mj_header= [XSHeaderRefresh headerWithRefreshingBlock:^{
@@ -130,6 +139,7 @@
           [tableView.mj_header endRefreshing];
         });
       }];
+```
 2）也可以这样
 ```
 self.productListTabView.mj_header = [XSHeaderRefresh headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
