@@ -50,14 +50,16 @@
       }
       
   3)设置子控件的位置和尺寸
-      - (void)placeSubviews
-      {
+      ```
+       - (void)placeSubviews
+       {
           [super placeSubviews];
           self.headerFreshView.bounds = CGRectMake(0, 0, 110, 20);
           self.headerFreshView.center = CGPointMake(self.mj_w*0.5, self.mj_h-20);
           self.label.frame = CGRectMake(30, 0, 80, 20);
           self.imageView.frame = CGRectMake(10, 5, 10, 10);
-      }
+       }
+       ```
       
 4)重写父类方法
        #pragma mark 监听scrollView的contentOffset改变
@@ -124,7 +126,8 @@
       }
  
 - 调用类的示例
-  1）
+  1） 
+      ```
        __unsafe_unretained UITableView *tableView = self.tableView;
           // 下拉刷新
           tableView.mj_header= [XSHeaderRefresh headerWithRefreshingBlock:^{
@@ -134,6 +137,7 @@
           [tableView.mj_header endRefreshing];
         });
       }];
+      ```
 2）也可以这样
 ```
 self.productListTabView.mj_header = [XSHeaderRefresh headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
