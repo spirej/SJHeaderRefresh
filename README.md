@@ -27,6 +27,7 @@
 @end
 ```
 2)这里做控件的初始化配置
+
       @implementation XSHeaderRefresh
       - (void)prepare {
           [super prepare];
@@ -49,7 +50,6 @@
       }
       
   3)设置子控件的位置和尺寸
- 
       - (void)placeSubviews
       {
           [super placeSubviews];
@@ -125,7 +125,7 @@
  
 - 调用类的示例
   1）
-      __unsafe_unretained UITableView *tableView = self.tableView;
+       __unsafe_unretained UITableView *tableView = self.tableView;
           // 下拉刷新
           tableView.mj_header= [XSHeaderRefresh headerWithRefreshingBlock:^{
           // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
