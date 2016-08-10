@@ -1,5 +1,5 @@
 # SJHeaderRefresh
-[详细说明地址](http://www.jianshu.com/p/67a7aebcad2d)
+[详细说明地址http://www.jianshu.com/p/67a7aebcad2d](http://www.jianshu.com/p/67a7aebcad2d)
 
 我的运行效果图：
 ![XSRefresh.gif](http://upload-images.jianshu.io/upload_images/1276164-402d3fefffeb9ff2.gif?imageMogr2/auto-orient/strip)
